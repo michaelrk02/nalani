@@ -25,7 +25,7 @@ class BaseController extends Controller {
         $this->creditCardModel = model('App\Models\CreditCardModel');
         $this->orderModel = model('App\Models\OrderModel');
 
-        $this->member = $this->memberModel->find('34966de6-d929-11ec-a34d-c947064b6724');
+        $this->member = $this->memberModel->find($_ENV['nalani.memberID']);
     }
 
     protected function render($title, $page, $data = []) {

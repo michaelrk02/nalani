@@ -1,0 +1,12 @@
+1. Import database SQL terlebih dahulu ke phpMyAdmin atau sejenisnya
+2. Tambah data produk jika diperlukan (id berupa UUID, bisa digenerate di https://www.uuidgenerator.net/version4)
+3. Buat file .env berdasarkan template dari file env dan sesuaikan konfigurasi base URL dan database dengan keadaan server
+4. Buka pada URL untuk melihat produk: BASE_URL/index.php/product/view/ID, misal http://localhost/nalani/index.php/product/view/c3ad3808-fb8f-49ec-9cf8-063832557d51
+5. Alur pada Figma dapat diikuti mulai dari sekarang
+
+ROUTE UTAMA:
+/                   - beranda
+/product/view/{ID}  - melihat produk
+/cart               - melihat cart
+/order/viewAll      - melihat semua order
+

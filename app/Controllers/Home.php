@@ -6,7 +6,7 @@ class Home extends BaseController {
 
     public function index() {
         $products = $this->productModel->findAll();
-        $this->render('Home', 'home/index', ['products' => $products]);
+        $this->render('Home', 'home/index', ['products' => $products, 'member' => $this->member]);
     }
 
 }

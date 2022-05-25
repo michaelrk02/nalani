@@ -90,14 +90,26 @@
             </div>
             <div class=" row d-flex justify-content-center button-container ">
                 <div class=" btn-group " role=" group " aria-label=" Basic example " id="btn-group-1">
-                    <input class="btn-check" type="radio" name="finish" value="Eggshell" id="opt-finish-eggshell">
-                    <label class="btn btn-secondary rounded" for="opt-finish-eggshell">Eggshell</label>
-
-                    <input class="btn-check" type="radio" name="finish" value="Matt" id="opt-finish-matt">
-                    <label class="btn btn-secondary rounded" for="opt-finish-matt">Matt</label>
-
-                    <input class="btn-check" type="radio" name="finish" value="Glossy" id="opt-finish-glossy">
-                    <label class="btn btn-secondary rounded" for="opt-finish-glossy">Glossy</label>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="finish" value="Eggshell" id="opt-finish-eggshell" checked>
+                            <label class="btn btn-secondary rounded" for="opt-finish-eggshell">Eggshell</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="finish" value="Matt" id="opt-finish-matt">
+                            <label class="btn btn-secondary rounded" for="opt-finish-matt">Matt</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 25.000</div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="finish" value="Glossy" id="opt-finish-glossy">
+                            <label class="btn btn-secondary rounded" for="opt-finish-glossy">Glossy</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 50.000</div>
+                    </div>
                 </div>
             </div>
 
@@ -106,14 +118,26 @@
             </div>
             <div class=" row d-flex justify-content-center button-container ">
                 <div class=" btn-group " role=" group " aria-label=" Basic example " id="btn-group-2">
-                    <input class="btn-check" type="radio" name="property" value="Standard" id="opt-property-standard">
-                    <label class="btn btn-secondary rounded" for="opt-property-standard">Standard</label>
-
-                    <input class="btn-check" type="radio" name="property" value="Waterproof" id="opt-property-waterproof">
-                    <label class="btn btn-secondary rounded" for="opt-property-waterproof">Waterproof</label>
-
-                    <input class="btn-check" type="radio" name="property" value="Easy-clear" id="opt-property-easyclear">
-                    <label class="btn btn-secondary rounded" for="opt-property-easyclear">Easy-clear</label>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="property" value="Standard" id="opt-property-standard" checked>
+                            <label class="btn btn-secondary rounded" for="opt-property-standard">Standard</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="property" value="Waterproof" id="opt-property-waterproof">
+                            <label class="btn btn-secondary rounded" for="opt-property-waterproof">Waterproof</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 25.000</div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="property" value="Easy-clear" id="opt-property-easyclear">
+                            <label class="btn btn-secondary rounded" for="opt-property-easyclear">Easy-clear</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 50.000</div>
+                    </div>
                 </div>
             </div>
 
@@ -122,14 +146,26 @@
             </div>
             <div class=" row d-flex justify-content-center button-container ">
                 <div class=" btn-group " role=" group " aria-label=" Basic example " id="btn-group-3">
-                    <input class="btn-check" type="radio" name="size" value="2.5 litre" id="opt-size-2p5l">
-                    <label class="btn btn-secondary rounded" for="opt-size-2p5l">2.5 litre</label>
-
-                    <input class="btn-check" type="radio" name="size" value="5 litre" id="opt-size-5l">
-                    <label class="btn btn-secondary rounded" for="opt-size-5l">5 litre</label>
-
-                    <input class="btn-check" type="radio" name="size" value="Sample" id="opt-size-sample">
-                    <label class="btn btn-secondary rounded" for="opt-size-sample">Sample</label>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="size" value="2.5 litre" id="opt-size-2p5l" checked>
+                            <label class="btn btn-secondary rounded" for="opt-size-2p5l">2.5 litre</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="size" value="5 litre" id="opt-size-5l">
+                            <label class="btn btn-secondary rounded" for="opt-size-5l">5 litre</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 100.000</div>
+                    </div>
+                    <div>
+                        <div>
+                            <input class="btn-check" type="radio" name="size" value="10 litre" id="opt-size-10l">
+                            <label class="btn btn-secondary rounded" for="opt-size-10l">10 litre</label>
+                        </div>
+                        <div class="text-center text-muted" style="font-size: 0.75rem">+Rp. 200.000</div>
+                    </div>
                 </div>
             </div>
 

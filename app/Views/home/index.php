@@ -17,7 +17,7 @@
             </a>
 
             <div class="ml-auto">
-                <a class="cart-icon" href="#">
+                <a class="cart-icon" href="<?php echo site_url('cart'); ?>">
                     <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M11.9421 24.2424C11.9421 25.2132 11.1546 26.0001 10.1833 26.0001C9.21234 26.0001 8.4248 25.2132 8.4248 24.2424C8.4248 23.2715 9.21234 22.4846 10.1833 22.4846C11.1546 22.4846 11.9421 23.2715 11.9421 24.2424Z"
@@ -56,7 +56,7 @@
                                             <p class="dropdown-item">Welcome Back,</p>
                                         </div>
                                         <div class="row profile-name">
-                                            <p class="dropdown-item">Cipta Pratama</p>
+                                            <p class="dropdown-item"><?php echo $member->first_name; ?> <?php echo $member->last_name; ?></p>
                                         </div>
                                     </div>
                                     <div class="col-8 align-self-middle">
@@ -71,12 +71,12 @@
                                 </div>
 
                             </button>
-                            <button class="dropdown-item" type="button">Home</button>
-                            <button class="dropdown-item" type="button">My Orders</button>
-                            <button class="dropdown-item" type="button">Payment Method</button>
-                            <button class="dropdown-item" type="button">Delivery Address</button>
+                            <a class="dropdown-item" href="<?php echo site_url(); ?>">Home</a>
+                            <a class="dropdown-item" href="<?php echo site_url('order/viewAll'); ?>">My Orders</a>
+                            <a class="dropdown-item">Payment Method</a>
+                            <a class="dropdown-item">Delivery Address</a>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" type="button">About Nala Paint</button>
+                            <a class="dropdown-item">About Nala Paint</a>
                         </div>
                     </div>
                 </div>

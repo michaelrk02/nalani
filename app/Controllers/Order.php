@@ -9,12 +9,17 @@ class Order extends BaseController {
             die('Incorrect shipping address or credit card');
         }
 
+        $cart = $this->memberModel->viewCart($this->member->id);
+        if (count($cart) == 0) {
+            die('Cart is empty');
+        }
+
         $order = [];
         $order['member'] = $this->member->id;
         $order['subtotal'] = $this->memberModel->getCartSubtotal($this->member->id);
         $this->orderModel->insert($order);
         $orderID = $this->orderModel->getInsertID();
-        $this->orderModel->insertCart($orderID, $this->memberModel->viewCart($this->member->id));
+        $this->orderModel->insertCart($orderID, $cart);
         $this->orderModel->insertShippingAddress($orderID, $this->shippingAddressModel->find($this->member->default_shipping_address));
         $this->orderModel->insertCreditCard($orderID, $this->creditCardModel->find($this->member->default_credit_card));
 
@@ -22,7 +27,7 @@ class Order extends BaseController {
     }
 
     public function viewAll() {
-        $orders = $this->orderModel->where('member', $this->member->id)->findAll();
+        $orders = $this->orderModel->where('member', $this->member->id)->orderBy('placed_at', 'DESC')->findAll();
         foreach ($orders as &$order) {
             $order->cart = $this->orderModel->viewCart($order->id);
             $order->estimate_delivery = date_format(date_create($order->estimate_delivery), 'j M Y');

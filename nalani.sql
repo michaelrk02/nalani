@@ -111,10 +111,25 @@ CREATE TABLE `member_cart` (
 LOCK TABLES `member_cart` WRITE;
 /*!40000 ALTER TABLE `member_cart` DISABLE KEYS */;
 INSERT INTO `member_cart` VALUES
-('34966de6-d929-11ec-a34d-c947064b6724','045e5c35-d99a-11ec-9238-987066b24a59','Glossy','Easy-clear','Sample',1,0),
-('34966de6-d929-11ec-a34d-c947064b6724','d88bb3d8-d919-11ec-a34d-c947064b6724','Eggshell','Waterproof','2.5 litre',2,1);
+('34966de6-d929-11ec-a34d-c947064b6724','045e5c35-d99a-11ec-9238-987066b24a59','Glossy','Easy-clear','10 litre',1,1),
+('34966de6-d929-11ec-a34d-c947064b6724','d88bb3d8-d919-11ec-a34d-c947064b6724','Eggshell','Standard','2.5 litre',3,1);
 /*!40000 ALTER TABLE `member_cart` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `member_cart_additive`
+--
+
+DROP TABLE IF EXISTS `member_cart_additive`;
+/*!50001 DROP VIEW IF EXISTS `member_cart_additive`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `member_cart_additive` (
+  `member` tinyint NOT NULL,
+  `product` tinyint NOT NULL,
+  `additive` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary table structure for view `member_cart_subtotal`
@@ -161,8 +176,7 @@ CREATE TABLE `order` (
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
 INSERT INTO `order` VALUES
-('628c8958-dab8-11ec-9950-acc8e72d2947','#MO8457','2022-05-23 23:50:00','34966de6-d929-11ec-a34d-c947064b6724',432000,4000,436000,'mixing','2022-06-06'),
-('77854f9c-dab8-11ec-9950-acc8e72d2947','#MO1506','2022-05-23 23:50:35','34966de6-d929-11ec-a34d-c947064b6724',432000,4000,436000,'mixing','2022-06-06');
+('a20fef65-dc2a-11ec-9800-a8b8a0f90118','#MO7096','2022-05-25 20:00:20','34966de6-d929-11ec-a34d-c947064b6724',888000,4000,892000,'mixing','2022-06-08');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,10 +211,8 @@ CREATE TABLE `order_cart` (
 LOCK TABLES `order_cart` WRITE;
 /*!40000 ALTER TABLE `order_cart` DISABLE KEYS */;
 INSERT INTO `order_cart` VALUES
-('628c8958-dab8-11ec-9950-acc8e72d2947','045e5c35-d99a-11ec-9238-987066b24a59','Glossy','Easy-clear','Sample',1,140000,0,140000),
-('628c8958-dab8-11ec-9950-acc8e72d2947','d88bb3d8-d919-11ec-a34d-c947064b6724','Eggshell','Waterproof','2.5 litre',2,136000,20000,292000),
-('77854f9c-dab8-11ec-9950-acc8e72d2947','045e5c35-d99a-11ec-9238-987066b24a59','Glossy','Easy-clear','Sample',1,140000,0,140000),
-('77854f9c-dab8-11ec-9950-acc8e72d2947','d88bb3d8-d919-11ec-a34d-c947064b6724','Eggshell','Waterproof','2.5 litre',2,136000,20000,292000);
+('a20fef65-dc2a-11ec-9800-a8b8a0f90118','045e5c35-d99a-11ec-9238-987066b24a59','Glossy','Easy-clear','10 litre',1,440000,20000,460000),
+('a20fef65-dc2a-11ec-9800-a8b8a0f90118','d88bb3d8-d919-11ec-a34d-c947064b6724','Eggshell','Standard','2.5 litre',3,136000,20000,428000);
 /*!40000 ALTER TABLE `order_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,8 +240,7 @@ CREATE TABLE `order_credit_card` (
 LOCK TABLES `order_credit_card` WRITE;
 /*!40000 ALTER TABLE `order_credit_card` DISABLE KEYS */;
 INSERT INTO `order_credit_card` VALUES
-('628c8958-dab8-11ec-9950-acc8e72d2947','Michael Krisnadhi','1234 5678 1234 5678','02 / 23','121'),
-('77854f9c-dab8-11ec-9950-acc8e72d2947','Michael Krisnadhi','1234 5678 1234 5678','02 / 23','121');
+('a20fef65-dc2a-11ec-9800-a8b8a0f90118','Michael Krisnadhi','1234 5678 1234 5678','02 / 23','121');
 /*!40000 ALTER TABLE `order_credit_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,8 +274,7 @@ CREATE TABLE `order_shipping_address` (
 LOCK TABLES `order_shipping_address` WRITE;
 /*!40000 ALTER TABLE `order_shipping_address` DISABLE KEYS */;
 INSERT INTO `order_shipping_address` VALUES
-('628c8958-dab8-11ec-9950-acc8e72d2947','Kampus ITB','Michael','Krisnadhi','Jl. Ganesha no. 10','Bandung','Jawa Barat',57554,'Indonesia','0895343845423','michaelkrisnadhi@gmail.com'),
-('77854f9c-dab8-11ec-9950-acc8e72d2947','Kampus ITB','Michael','Krisnadhi','Jl. Ganesha no. 10','Bandung','Jawa Barat',57554,'Indonesia','0895343845423','michaelkrisnadhi@gmail.com');
+('a20fef65-dc2a-11ec-9800-a8b8a0f90118','Kampus ITB','Michael','Krisnadhi','Jl. Ganesha no. 10','Bandung','Jawa Barat',57554,'Indonesia','0895343845423','michaelkrisnadhi@gmail.com');
 /*!40000 ALTER TABLE `order_shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,6 +357,25 @@ UNLOCK TABLES;
 --
 
 --
+-- Final view structure for view `member_cart_additive`
+--
+
+/*!50001 DROP TABLE IF EXISTS `member_cart_additive`*/;
+/*!50001 DROP VIEW IF EXISTS `member_cart_additive`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013  SQL SECURITY DEFINER */
+/*!50001 VIEW `member_cart_additive` AS select `mc`.`member` AS `member`,`mc`.`product` AS `product`,case when `mc`.`finish` = 'Matt' then 25000 when `mc`.`finish` = 'Glossy' then 50000 else 0 end + case when `mc`.`property` = 'Waterproof' then 25000 when `mc`.`property` = 'Easy-clear' then 50000 else 0 end + case when `mc`.`size` = '5 litre' then 100000 when `mc`.`size` = '10 litre' then 200000 else 0 end AS `additive` from (`member_cart` `mc` join `product` `p` on(`p`.`id` = `mc`.`product`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `member_cart_subtotal`
 --
 
@@ -360,7 +389,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013  SQL SECURITY DEFINER */
-/*!50001 VIEW `member_cart_subtotal` AS select `mc`.`member` AS `id`,sum(`mc`.`quantity` * `p`.`price` + case when `mc`.`uses_painter_service` then 20000 else 0 end) AS `subtotal` from (`member_cart` `mc` join `product` `p` on(`p`.`id` = `mc`.`product`)) group by `mc`.`member` */;
+/*!50001 VIEW `member_cart_subtotal` AS select `mc`.`member` AS `id`,sum(`mc`.`quantity` * (`p`.`price` + `mca`.`additive`) + case when `mc`.`uses_painter_service` then 20000 else 0 end) AS `subtotal` from ((`member_cart` `mc` join `member_cart_additive` `mca` on(`mc`.`member` = `mca`.`member` and `mc`.`product` = `mca`.`product`)) join `product` `p` on(`p`.`id` = `mc`.`product`)) group by `mc`.`member` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -374,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-24 22:58:37
+-- Dump completed on 2022-05-25 20:04:32

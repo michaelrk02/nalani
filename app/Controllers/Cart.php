@@ -54,4 +54,9 @@ class Cart extends BaseController {
         return redirect()->to('shipping/options');
     }
 
+    public function clear() {
+        $this->memberModel->deleteCart($this->member->id);
+        return redirect()->to('cart');
+    }
+
 }

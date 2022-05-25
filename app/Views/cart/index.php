@@ -9,15 +9,15 @@
                     <path
                         d="M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z" />
                 </svg>
-                <a href="/" class="stretched-link"></a>
+                <a href="<?php echo site_url(); ?>" class="stretched-link"></a>
             </div>
 
             <h5 class="page-title mt-2">My Cart
-                <span class="my-cart-sub">(1)</span>
+                <span class="my-cart-sub">(<?php echo count($items); ?>)</span>
             </h5>
 
             <div class="ml-auto mrt mt-2">
-                <h6 class="clear">Clear</h6>
+                <a class="clear text-decoration-none" href="<?php echo site_url('cart/clear'); ?>" onclick="return confirm('Are you sure?')">Clear</a>
             </div>
 
         </div>

@@ -15,6 +15,10 @@ class Cart extends BaseController {
 
     public function add($product) {
         if (!empty($this->request->getPost('submit'))) {
+            if ($this->memberModel->viewCart($this->member->id, $product) !== NULL) {
+                die('Cannot add an existing product. Please <a href="'.site_url('cart').'">remove it from cart</a> first');
+            }
+
             $data = [];
             $data['finish'] = $this->request->getPost('finish');
             $data['property'] = $this->request->getPost('property');

@@ -175,31 +175,16 @@
 
         <div class="cards-container ">
             <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                        <h5>Titanium White</h5>
-                        <p>For ceilings & walls</p>
-                        <img class="text-center cards-img" src=" ./assets/img/canvas-white.png " alt=" ">
-                        <a href="/details-titanium-white.html" class=" stretched-link"></a>
+                <?php foreach ($products as $product): ?>
+                    <div class="col-6">
+                        <div class="card">
+                            <h5><?php echo esc($product->name); ?></h5>
+                            <p>For ceilings & walls</p>
+                            <img class="text-center cards-img" src=" ./assets/img/canvas-white.png " alt=" ">
+                            <a href="<?php echo site_url('product/view/'.$product->id); ?>" class=" stretched-link"></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                        <h5>Canvas White</h5>
-                        <p>For ceilings & walls</p>
-                        <img class=" text-center cards-img" src=" ./assets/img/canvas-white.png " alt=" ">
-                        <a href="/details-canvas-white.html" class=" stretched-link"></a>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="card">
-                        <h5>Titanium White</h5>
-                        <p>For ceilings & walls</p>
-                        <img class="text-center cards-img" src=" ./assets/img/canvas-white.png " alt=" ">
-                        <a href="/details-titanium-white.html" class="btn btn-primary stretched-link"></a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
 

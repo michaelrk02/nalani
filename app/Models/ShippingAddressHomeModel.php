@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ShippingAddressModel extends Model {
+class ShippingAddressHomeModel extends Model {
 
-    protected $table = 'shipping_address';
+    protected $table = 'shipping_address_home';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = FALSE;
     protected $returnType = 'object';

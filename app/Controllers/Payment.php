@@ -5,7 +5,10 @@ namespace App\Controllers;
 class Payment extends BaseController {
 
     public function options() {
-        if ($this->member->default_shipping_address == NULL) {
+        if (
+            ($this->member->default_shipping_address_type == NULL) ||
+            ($this->member->default_shipping_address_id == NULL)
+        ) {
             die('Incorrect shipping address');
         }
 
@@ -15,7 +18,7 @@ class Payment extends BaseController {
             'member' => $this->member,
             'creditCards' => $creditCards,
             'subtotal' => $this->memberModel->getCartSubtotal($this->member->id),
-            'shippingFee' => 4000
+            'shippingFee' => $this->session->get('shipping_fee')
         ]);
     }
 

@@ -146,10 +146,8 @@
         128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z " />
                             </svg></div>
                         <div class="col-10 title ">
-                            <?php echo esc($address->address); ?>
-                            Jl. Teknik Kimia, Keputih, Kec. Sukolilo
-                            <div class="card-address-description align-self-start "><?php echo esc($address->city); ?>, <?php echo esc($address->province); ?> <?php echo esc($address->postal_code); ?>, <?php echo esc($address->country); ?>
-                            </div>
+                            <?php echo esc($address->place_name); ?>
+                            <div class="card-address-description align-self-start "><?php echo esc($address->place_address); ?></div>
                         </div>
                     </div>
                 </div>

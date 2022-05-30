@@ -4,20 +4,29 @@ namespace App\Controllers;
 
 class Shipping extends BaseController {
 
-    public function options() {
-        $shippingAddresses = $this->shippingAddressModel->where('member', $this->member->id)->findAll();
+    public function options($type = 'home') {
+        $shippingAddresses = [];
+        switch ($type) {
+        case 'home':
+            $shippingAddresses = $this->shippingAddressHomeModel->where('member', $this->member->id)->findAll();
+            break;
+        case 'point':
+            $shippingAddresses = $this->shippingAddressPointModel->findAll();
+            break;
+        }
 
         $this->render('Choose Shipping Address', 'shipping/options', [
+            'type' => $type,
             'member' => $this->member,
             'shippingAddresses' => $shippingAddresses,
             'subtotal' => $this->memberModel->getCartSubtotal($this->member->id),
-            'shippingFee' => 4000
+            'shippingFee' => $this->session->get('shipping_fee')
         ]);
     }
 
-    public function choose($id) {
-        $this->memberModel->update($this->member->id, ['default_shipping_address' => $id]);
-        return redirect()->to('shipping/options');
+    public function choose($type, $id) {
+        $this->setShippingAddress($type, $id);
+        return redirect()->to('shipping/options/'.$type);
     }
 
     public function addAddress() {
@@ -35,7 +44,7 @@ class Shipping extends BaseController {
         $address->email = set_value('email', '', FALSE);
 
         if (!empty($this->request->getPost('submit'))) {
-            $this->shippingAddressModel->insert((array)$address);
+            $this->shippingAddressHomeModel->insert((array)$address);
             return redirect()->to('shipping/options');
         }
 
@@ -59,7 +68,7 @@ class Shipping extends BaseController {
         $address->email = set_value('email', $address->email, FALSE);
 
         if (!empty($this->request->getPost('submit'))) {
-            $this->shippingAddressModel->update($id, (array)$address);
+            $this->shippingAddressHomeModel->update($id, (array)$address);
             return redirect()->to('shipping/options');
         }
 
@@ -70,7 +79,7 @@ class Shipping extends BaseController {
     }
 
     public function deleteAddress($id) {
-        $this->shippingAddressModel->delete($id);
+        $this->shippingAddressHomeModel->delete($id);
         return redirect()->to('shipping/options');
     }
 

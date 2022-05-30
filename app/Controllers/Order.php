@@ -5,7 +5,11 @@ namespace App\Controllers;
 class Order extends BaseController {
 
     public function place() {
-        if (($this->member->default_shipping_address == NULL) || ($this->member->default_credit_card == NULL)) {
+        if (
+            ($this->member->default_shipping_address_type == NULL) ||
+            ($this->member->default_shipping_address_id == NULL) ||
+            ($this->member->default_credit_card == NULL)
+        ) {
             die('Incorrect shipping address or credit card');
         }
 
@@ -20,8 +24,19 @@ class Order extends BaseController {
         $this->orderModel->insert($order);
         $orderID = $this->orderModel->getInsertID();
         $this->orderModel->insertCart($orderID, $cart);
-        $this->orderModel->insertShippingAddress($orderID, $this->shippingAddressModel->find($this->member->default_shipping_address));
+
+        $address = NULL;
+        switch ($this->member->default_shipping_address_type) {
+        case 'home':
+            $address = $this->shippingAddressHomeModel->find($this->member->default_shipping_address_id);
+            break;
+        case 'point':
+            $address = $this->shippingAddressPointModel->find($this->member->default_shipping_address_id);
+            break;
+        }
+        $this->orderModel->insertShippingAddress($this->member->default_shipping_address_type, $orderID, $address);
         $this->orderModel->insertCreditCard($orderID, $this->creditCardModel->find($this->member->default_credit_card));
+        $this->clearCart();
 
         return redirect()->to(site_url('payment/successful/'.$orderID));
     }

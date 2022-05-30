@@ -20,21 +20,29 @@
     <section class="delivery-option mt-4">
         <div class="container">
             <div class=" row d-flex justify-content-center button-container ">
-                <div class=" btn-group " role=" group " aria-label=" Basic example " id="btn-group-3">
-                    <button type=" button " class=" btn btn-secondary  d-flex rounded  ">
-                        <div class="radio-button btn-shipping"></div>
-                        <div class="card-label">
-                            Home Delivery
+                <!--<div class=" btn-group " role=" group " aria-label=" Basic example " id="btn-group-3">-->
+                <div class="col-6 pe-0">
+                    <a class=" btn btn-secondary  d-flex rounded  " href="<?php echo site_url('shipping/options/home'); ?>">
+                        <div class="form-check">
+                            <input id="type-home" disabled type="radio" class="form-check-input" <?php echo $type == 'home' ? 'checked' : ''; ?>>
+                            <label class="form-check-label">
+                                Home Delivery
+                            </label>
                         </div>
-                    </button>
-                    <button type=" button " class=" btn btn-secondary  d-flex rounded ">
-                        <div class="radio-button btn-shipping"></div>
-                        <div class="card-label">
-                            Pick Up Point
-                        </div>
-                    </button>
-
+                    </a>
                 </div>
+                <div class="col-6 ps-0">
+                    <a class=" btn btn-secondary  d-flex rounded " href="<?php echo site_url('shipping/options/point'); ?>">
+                        <div class="form-check">
+                            <input id="type-point" disabled type="radio" class="form-check-input" <?php echo $type == 'point' ? 'checked' : ''; ?>>
+                            <label class="form-check-label">
+                                Pick-Up Point
+                            </label>
+                        </div>
+                    </a>
+                </div>
+
+                <!--</div>-->
             </div>
         </div>
 
@@ -47,29 +55,38 @@
                                 <path
                                     d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z" />
                             </svg></div>
-                        <div class="col title"><?php echo esc($address->place_name); ?></div>
+                        <div class="col title"><?php echo esc($type == 'home' ? $address->place_name : $address->pickup_location); ?></div>
                         <div class="col-auto card-address-radio-button">
-                                <a class="d-block" style="font-size: inherit" href="<?php echo site_url('shipping/choose/'.$address->id); ?>">
+                                <a class="d-block" style="font-size: inherit" href="<?php echo site_url('shipping/choose/'.$type.'/'.$address->id); ?>">
                                     <div class="form-check">
-                                        <input class="form-check-input" disabled type="radio" name="address" id="address-<?php echo $address->id; ?>" <?php echo $member->default_shipping_address == $address->id ? 'checked' : ''; ?>>
+                                        <input class="form-check-input" disabled type="radio" name="address" id="address-<?php echo $address->id; ?>" <?php echo ($member->default_shipping_address_type == $type) && ($member->default_shipping_address_id == $address->id) ? 'checked' : ''; ?>>
                                         <label class="form-check-label" for="address-<?php echo $address->id; ?>">
                                         </label>
                                     </div>
                                 </a>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col card-address-description align-self-start">
-                            <div><?php echo esc($address->first_name); ?> <?php echo esc($address->last_name); ?> | <?php echo esc($address->phone_number); ?></div>
-                            <div><?php echo esc($address->address); ?></div>
-                            <div><?php echo esc($address->city); ?>, <?php echo esc($address->province); ?> <?php echo esc($address->postal_code); ?>, <?php echo esc($address->country); ?></div>
+                    <?php if ($type == 'home'): ?>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col card-address-description align-self-start">
+                                <div><?php echo esc($address->first_name); ?> <?php echo esc($address->last_name); ?> | <?php echo esc($address->phone_number); ?></div>
+                                <div><?php echo esc($address->address); ?></div>
+                                <div><?php echo esc($address->city); ?>, <?php echo esc($address->province); ?> <?php echo esc($address->postal_code); ?>, <?php echo esc($address->country); ?></div>
+                            </div>
+                            <div class="col-auto align-self-end text-end">
+                                <div><a class="" href="<?php echo site_url('shipping/editAddress/'.$address->id); ?>">Edit</a></div>
+                                <div><a class="" onclick="return confirm('Are you sure?')" href="<?php echo site_url('shipping/deleteAddress/'.$address->id); ?>">Delete</a></div>
+                            </div>
                         </div>
-                        <div class="col-auto align-self-end text-end">
-                            <div><a class="" href="<?php echo site_url('shipping/editAddress/'.$address->id); ?>">Edit</a></div>
-                            <div><a class="" onclick="return confirm('Are you sure?')" href="<?php echo site_url('shipping/deleteAddress/'.$address->id); ?>">Delete</a></div>
+                    <?php else: ?>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col card-address-description align-self-start">
+                                <div><?php echo esc($address->address); ?></div>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

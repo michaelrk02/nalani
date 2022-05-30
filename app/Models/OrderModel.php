@@ -30,16 +30,25 @@ class OrderModel extends Model {
         return $this->builder('order_cart')->insertBatch($data);
     }
 
-    public function insertShippingAddress($id, $data) {
+    public function insertShippingAddress($type, $id, $data) {
         $data = (array)$data;
-        $data['order'] = $id;
-        unset($data['id']);
-        unset($data['member']);
-        return $this->builder('order_shipping_address')->insert($data);
+        $this->builder('order_shipping_address')->insert(['order' => $id, 'type' => $type]);
+        switch ($type) {
+        case 'home':
+            $data['order'] = $id;
+            unset($data['id']);
+            unset($data['member']);
+            return $this->builder('order_shipping_address_home')->insert($data);
+        case 'point':
+            $data['order'] = $id;
+            unset($data['id']);
+            return $this->builder('order_shipping_address_point')->insert($data);
+        }
+        return FALSE;
     }
 
     public function findShippingAddress($id) {
-        return $this->builder('order_shipping_address')->where('order', $id)->get()->getRow();
+        return $this->builder('order_shipping_address_place')->where('order', $id)->get()->getRow();
     }
 
     public function insertCreditCard($id, $data) {
@@ -74,7 +83,9 @@ class OrderModel extends Model {
     }
 
     protected function initData($data) {
-        $data['data']['shipping_fee'] = 4000;
+        $session = \Config\Services::session();
+
+        $data['data']['shipping_fee'] = $session->get('shipping_fee');
         $data['data']['total'] = $data['data']['subtotal'] + $data['data']['shipping_fee'];
         $data['data']['tracking_status'] = 'mixing';
         $data['data']['estimate_delivery'] = $this->db->query('SELECT DATE_ADD(NOW(), INTERVAL 14 DAY) value')->getRow()->value;

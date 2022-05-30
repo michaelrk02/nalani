@@ -9,7 +9,7 @@ class Cart extends BaseController {
         $this->render('Your Cart', 'cart/index', [
             'items' => $items,
             'subtotal' => $this->memberModel->getCartSubtotal($this->member->id),
-            'shippingFee' => 4000
+            'shippingFee' => 0
         ]);
     }
 
@@ -55,7 +55,7 @@ class Cart extends BaseController {
     }
 
     public function clear() {
-        $this->memberModel->deleteCart($this->member->id);
+        $this->clearCart();
         return redirect()->to('cart');
     }
 

@@ -47,12 +47,14 @@
                                     </div>
                                     <div class="col-8">
                                         <h6 class="cart-product-title"><?php echo esc($item->product_name); ?> (x<?php echo $item->quantity; ?>)</h6>
-                                        <p><?php echo $item->finish; ?> | <?php echo $item->property; ?> | <?php echo $item->size; ?></p>
-                                        <div class="row d-flex justify-content-between">
-                                            <div class="col">
-                                                <h6 class="cart-product-price"><?php echo rupiah($item->unit_price); ?></h6>
-                                            </div>
-                                        </div>
+                                        <p class="product-category ">
+                                            <span class="d-block">
+                                                <?php echo $item->finish; ?> |
+                                                <?php echo $item->property; ?> |
+                                                <?php echo $item->size; ?>
+                                            </span>
+                                            <?php if ($item->painter_service_fee > 0): ?><span class="d-block pt-2">With painter service</span><?php endif; ?>
+                                        </p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
